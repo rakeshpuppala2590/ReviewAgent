@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/rest";
+import * as fs from "fs";
 import { createNodeMiddleware } from "@octokit/webhooks";
 import { WebhookEventMap } from "@octokit/webhooks-definitions/schema";
 import * as http from "http";
@@ -11,7 +12,7 @@ import { applyReview } from "./reviews";
 // This creates a new instance of the Octokit App class.
 const reviewApp = new App({
   appId: env.GITHUB_APP_ID,
-  privateKey: env.GITHUB_PRIVATE_KEY,
+  privateKey: fs.readFileSync(env.GITHUB_PRIVATE_KEY, "utf-8"),
   webhooks: {
     secret: env.GITHUB_WEBHOOK_SECRET,
   },

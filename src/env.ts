@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import { createPrivateKey } from "crypto";
 import chalk from "chalk";
-
+import * as fs from "fs";
 dotenv.config();
 
 export const env = {
@@ -10,6 +10,8 @@ export const env = {
   GITHUB_WEBHOOK_SECRET: process.env.GITHUB_WEBHOOK_SECRET,
   GROQ_API_KEY: process.env.GROQ_API_KEY,
 } as const;
+
+const privateKey = fs.readFileSync(env.GITHUB_PRIVATE_KEY, "utf-8");
 
 let valid = true;
 
@@ -25,7 +27,7 @@ for (const key in env) {
 }
 
 try {
-  createPrivateKey(env.GITHUB_PRIVATE_KEY);
+  createPrivateKey(privateKey);
 } catch (error) {
   console.log(
     chalk.red(

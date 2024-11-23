@@ -123,6 +123,7 @@ export const buildPatchPrompt = (file: PRFile) => {
   if (file.old_contents == null) {
     return rawPatchStrategy(file);
   } else {
+    console.log(smarterContextPatchStrategy(file));
     return smarterContextPatchStrategy(file);
   }
 };

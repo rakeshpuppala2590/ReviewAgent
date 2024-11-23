@@ -32,6 +32,8 @@ export class JavascriptParser implements AbstractParser {
     });
     let largestEnclosingContext: Node = null;
     let largestSize = 0;
+    console.log("Testing JS Parser");
+
     traverse(ast, {
       Function(path) {
         ({ largestSize, largestEnclosingContext } = processNode(

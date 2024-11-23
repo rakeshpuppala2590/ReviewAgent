@@ -277,7 +277,12 @@ const functionContextPatchStrategy = (
 
 export const smarterContextPatchStrategy = (file: PRFile) => {
   const parser: AbstractParser = getParserForExtension(file.filename);
+  console.log("Testing");
+  console.log("Testing");
+
   if (parser != null) {
+    console.log("Testing1");
+    console.log("Testing1");
     return functionContextPatchStrategy(file, parser);
   } else {
     return expandedPatchStrategy(file);
